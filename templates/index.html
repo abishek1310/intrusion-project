@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANAMOLY DETECTION</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="header">
+        <div class="tab">
+            <img src="{{ url_for('static', filename='ICON.png') }}" alt="Icon" class="tab-icon">
+            <span class="tab-text">ANAMOLY DETECTION</span>
+        </div>
+    </div>
+
+    <div class="container">
+        {% if file_uploaded %}
+            <p>File uploaded successfully.</p>
+        {% endif %}
+
+        <div class="buttons">
+            <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" id="csv-upload" name="file" accept=".csv">
+                <button type="submit">Submit</button>
+            </form>
+            <form id="stop-form" action="/stop" method="post">
+                <button type="submit">Stop</button>
+            </form>
+            <a href="/bargraph" target="_blank">Show Bar Graph</a>
+        </div>
+
+        <div class="data-container">
+            <div class="input-data">
+                <h2>Input Data</h2>
+                <pre id="input-data"></pre>
+            </div>
+            <div class="output-data">
+                <h2>Predicted Data</h2>
+                <pre id="output-data"></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="bar-graph">
+        <!-- Your bar graph content here -->
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            var stop = false;
+
+            function fetchData() {
+                $.getJSON('/data', function (data) {
+                    var inputText = '';
+                    var outputText = '';
+                    for (var i = data.input_data.length - 1; i >= 0; i--) { // Iterate from bottom to top
+                        inputText += data.input_data[i].join(', ') + '\n';
+                        var attackType = data.predicted_data[i];
+                        // Define colors for each attack type here
+                        var colorClass = getColorClassForAttackType(attackType);
+                        outputText += '<span class="' + colorClass + '">' + attackType + '</span>\n';
+                    }
+                    $('#input-data').text(inputText);
+                    $('#output-data').html(outputText); // Use .html() to render HTML with color classes
+
+                    if (!stop) {
+                        setTimeout(fetchData, 1000); // Fetch data every second
+                    }
+                });
+            }
+
+            // Function to map attack types to color classes
+            function getColorClassForAttackType(attackType) {
+                switch (attackType) {
+                    case 'Fuzzers':
+                        return 'attack-fuzzers';
+                    case 'Analysis':
+                        return 'attack-analysis';
+                    case 'Backdoors':
+                        return 'attack-backdoors';
+                    case 'DoS':
+                        return 'attack-dos';
+                    case 'Exploits':
+                        return 'attack-exploits';
+                    case 'Generic':
+                        return 'attack-generic';
+                    case 'Reconnaissance':
+                        return 'attack-reconnaissance';
+                    case 'Shellcode':
+                        return 'attack-shellcode';
+                    case 'Worms':
+                        return 'attack-worms';
+                    case 'Normal':
+                        return 'attack-normal';
+                    default:
+                        return 'attack-default'; // Default color if type not defined
+                }
+            }
+
+            $('#stop-form').submit(function (event) {
+                event.preventDefault();
+                stop = true;
+                $.ajax({
+                    type: 'POST',
+                    url: '/stop',
+                    success: function () {
+                        console.log('Prediction stopped.');
+                    },
+                    error: function (error) {
+                        console.error('Error stopping prediction:', error);
+                    }
+                });
+            });
+
+            fetchData();
+        });
+    </script>
+</body>
+</html>

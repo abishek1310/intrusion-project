@@ -1,0 +1,128 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #6a0dad; /* Purple background color */
+    padding: 10px;
+    text-align: center;
+    color: #fff; /* White text color */
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tab-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #e6e6fa; /* Light purple background color */
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-top: 20px; /* Added to give some space from the top */
+}
+
+h1, h2 {
+    color: #333;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.data-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-data, .output-data {
+    width: 48%;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    overflow: auto;
+    max-height: 300px;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+button, a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+button:hover, a:hover {
+    background-color: #0056b3;
+}
+
+/* Attack Type Colors */
+.attack-normal {
+    background-color: #98fb98; /* Pale green for Normal */
+    color: #333; /* Dark text for Normal */
+}
+
+.attack-analysis {
+    background-color: #ffb3b3; /* Light red for Analysis */
+}
+
+.attack-backdoors {
+    background-color: #ff9999; /* Lighter red for Backdoors */
+}
+
+.attack-dos {
+    background-color: #ff8080; /* Light red for DoS */
+}
+
+.attack-exploits {
+    background-color: #ff6666; /* Red for Exploits */
+}
+
+.attack-generic {
+    background-color: #ff4d4d; /* Darker red for Generic */
+}
+
+.attack-reconnaissance {
+    background-color: #ff3333; /* Even darker red for Reconnaissance */
+}
+
+.attack-shellcode {
+    background-color: #ff1a1a; /* Very dark red for Shellcode */
+}
+
+.attack-worms {
+    background-color: #ff0000; /* Bright red for Worms */
+}
+
+.bar-graph {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Results</h1>
+        <div class="results">
+            <div class="input-data">
+                <h2>Input Data</h2>
+                <pre id="input-data"></pre>
+            </div>
+            <div class="output-data">
+                <h2>Predicted Data</h2>
+                <pre id="output-data"></pre>
+            </div>
+        </div>
+        <div class="graph-container">
+            <h2>Attack Type Distribution</h2>
+            <img id="bar-graph" class="graph" src="/bargraph" alt="Bar Graph">
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
