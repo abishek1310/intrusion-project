@@ -3,8 +3,6 @@
 A network intrusion detection system (NIDS) built on the **UNSW-NB15** dataset that combines five base classifiers into a stacking ensemble to detect normal traffic and 9 categories of network attacks. Includes a Flask web app for uploading traffic CSVs and visualizing predictions in real time, with optional hardware integration (Arduino / NodeMCU) for physical alerts.
 
 **Author:** Abishek Udayakrishna Surya Narayanan
-**Project Window:** Jul 2024 – Dec 2024
-
 ---
 
 ## Overview
