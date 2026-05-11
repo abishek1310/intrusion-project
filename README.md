@@ -190,26 +190,7 @@ python app.py
 
 Upload a CSV with the 15 features listed above, then watch predictions appear in real time.
 
----
 
-## What This Project Demonstrates
-
-- **End-to-end ML pipeline** — preprocessing, feature encoding, normalization, train/test split, model training, evaluation, and serialization
-- **Ensemble learning** — stacking five heterogeneous base learners (boosting, bagging, discriminant analysis, kernel SVM) under a logistic regression meta-classifier
-- **Real-world deployment patterns** — model serialization (pickle), background threading for non-blocking inference, JSON streaming to a frontend
-- **Hardware integration** — coupling an ML model with physical IoT hardware via serial communication for tangible alerts
-
----
-
-## Known Limitations / Future Work
-
-- **No README of numerical results yet** — accuracy and classification reports are printed at runtime but not committed. A next pass should commit a `results.md` with the per-model classification reports and confusion matrices already saved as plots.
-- **Feature subset for the web app is smaller than the training feature set.** The Flask app uses 15 features whereas training uses the full preprocessed UNSW-NB15 feature space. The deployed model (`model_.pkl`) was retrained on this subset; clarifying this trade-off (full-feature accuracy vs. lightweight deployment accuracy) is on the to-do list.
-- **MinMaxScaler is re-fit per prediction batch in `app.py`** rather than loading a scaler fitted on training data. This is a known issue and should be fixed by pickling the scaler alongside the model.
-- **No cross-validation** — the training pipeline uses a single 80/20 split. Adding 5-fold CV would tighten the reported numbers.
-- **Naming clarity** — variable named `lightgbm` in `multiclass.py` is actually sklearn's `GradientBoostingClassifier`, not LightGBM. Will be renamed in a future commit.
-
----
 
 ## Acknowledgments
 
